@@ -1,15 +1,16 @@
 import React from 'react'
 import {Image, View, Text, StyleSheet, TouchableOpacity} from 'react-native'
-import {w} from '../../../constants'
+import {W} from '../../../constants'
 
 const ImageCard = (props) => {
 	const {container, sub, h1, cover} = styles;
 	const {image, name} = props.data;
+	 const img = image === null ? null : props.data.image.medium;
 	return (
 		<TouchableOpacity onPress={props.onPress}>
 			<View style={container}>
 				<View style={sub}>
-					<Image style={cover} source={{uri: image.medium}}/>
+					<Image style={cover} source={{uri: img}}/>
 				</View>
 				<Text style={h1}>{name.toUpperCase()}</Text>
 			</View>
@@ -19,7 +20,7 @@ const ImageCard = (props) => {
 
 const styles = StyleSheet.create({
 	container: {
-		width: w / 2.4,
+		width: W / 2.4,
 		paddingVertical: 10
 	},
 	sub: {
@@ -40,8 +41,8 @@ const styles = StyleSheet.create({
 		color: 'black',
 	},
 	cover: {
-		width: w / 2.4,
-		height: w * 0.63,
+		width: W / 2.4,
+		height: W * 0.63,
 		borderRadius: 10
 	}
 });

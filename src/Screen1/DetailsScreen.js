@@ -1,12 +1,9 @@
 import React, {PureComponent} from 'react'
 import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {Header, ImageBigCard} from "../components/uikit";
+import {W, WHITE} from "../../constants";
 
 class DetailsScreen extends PureComponent {
-	 componentWillUnmount(): void {
-			const {onGoBack} = this.props.navigation.state.params;
-			onGoBack && onGoBack('Hello from child')
-	 }
 
 	 render() {
 			const {show} = this.props.navigation.state.params;
@@ -18,9 +15,9 @@ class DetailsScreen extends PureComponent {
 				<View style={container}>
 					 <Header
 						 title={name}
-						 onPress={() => navigation.goBack()}
-						 leftIcon='ios-arrow-back'
-						 leftColor='#fff'/>
+						 onPressLeft={() => navigation.goBack()}
+						 iconLeft='ios-arrow-back'
+						 colorLeft='#fff'/>
 					 <ScrollView>
 							<View style={sub}>
 								 <ImageBigCard data={data}/>
@@ -35,28 +32,31 @@ class DetailsScreen extends PureComponent {
 
 const styles = StyleSheet.create({
 	 container: {
-			backgroundColor: '#fff'
+			backgroundColor: WHITE
 	 },
 	 sub: {
 			flex: 1,
 			alignItems: 'center',
 			marginBottom: 150,
-			backgroundColor: '#fff',
+			backgroundColor: WHITE
+	 },
+	 cover: {
+			width: W,
+			height: W * 1.5,
+			borderRadius: 10
 	 },
 	 h1: {
-			paddingTop: 10,
 			fontFamily: 'AvenirNext-DemiBold',
 			fontSize: 30,
 			padding: 15,
-			textAlign: 'center',
+			textAlign: 'center'
 	 },
 	 h2: {
-			paddingTop: 10,
 			fontFamily: 'AvenirNext-DemiBold',
 			fontSize: 15,
-			paddingHorizontal: 15,
 			textAlign: 'center',
 			color: 'grey',
+			paddingHorizontal: 15
 	 }
 });
 export default DetailsScreen

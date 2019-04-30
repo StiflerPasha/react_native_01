@@ -1,6 +1,6 @@
 import React from 'react'
 import {Image, View, StyleSheet} from 'react-native'
-import {w} from '../../../constants'
+import {W} from '../../../constants'
 
 const ImageBigCard = (props) => {
 	 const {container, sub, cover} = styles;
@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
 			elevation: 20,
 	 },
 	 cover: {
-			width: w / 1.67,
-			height: w * 0.9,
+			width: W / 1.67,
+			height: W * 0.9,
 			borderRadius: 10
 	 }
 });

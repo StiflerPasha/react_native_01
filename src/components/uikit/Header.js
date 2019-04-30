@@ -2,52 +2,92 @@ import React from "react";
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import {ifIphoneX} from "react-native-iphone-x-helper";
 import IonIcons from 'react-native-vector-icons/Ionicons'
-import {w} from "../../../constants";
+import {W, BLUE} from "../../../constants";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-const Header = (props) => {
-	 const {viewStyle, textStyle, leftButtonStyle} = styles;
+const Header = ({
+									 iconLeft,
+									 iconRight,
+									 colorLeft,
+									 colorRight,
+									 title,
+									 onPressLeft,
+									 onPressRight,
+								}) => {
+	 const {container, textStyle, iconLeftStyle, iconRightStyle} = styles;
 
 	 return (
-		 <View style={viewStyle}>
-				<TouchableOpacity onPress={props.onPress}>
+		 <View style={container}>
+
+				<TouchableOpacity onPress={onPressLeft}>
 					 <IonIcons
-						 name={props.leftIcon}
-						 style={leftButtonStyle}
-						 color={props.leftColor}/>
+						 name={iconLeft}
+						 style={iconLeftStyle}
+						 color={colorLeft}/>
 				</TouchableOpacity>
-				<Text numberOfLines={1} ellipsizeMode={'tail'} style={textStyle}>{props.title}</Text>
+
+				<Text
+					numberOfLines={1}
+					ellipsizeMode={'tail'}
+					style={textStyle}>{title}
+				</Text>
+
+				<TouchableOpacity onPress={onPressRight}>
+					 <MaterialCommunityIcons
+						 name={iconRight}
+						 style={[iconRightStyle, {color: colorRight}]}
+					 />
+				</TouchableOpacity>
+
 		 </View>
 	 )
 };
 
 const styles = StyleSheet.create({
-	 viewStyle: {
-	 	 flexDirection: 'row',
-			backgroundColor: '#30d0fe',
-			...ifIphoneX({
-				 height: 116
-			}, {
-				 height: 90
-			}),
-			alignItems: 'center',
-			justifyContent: 'flex-start',
-			paddingLeft: 22,
+	 container: {
+			flexDirection: 'row',
+			justifyContent: 'space-between',
 			shadowColor: '#000',
-			shadowOffset: {width: 0, height: 2},
+			shadowOffset: { width: 0, height: 2 },
 			shadowOpacity: 0.2,
 			elevation: 2,
-			position: 'relative'
+			paddingHorizontal: 20,
+			backgroundColor: BLUE,
+			position: 'relative',
+			...ifIphoneX({
+				 height: 122
+			}, {
+				 height: 90
+			})
 	 },
 	 textStyle: {
 			color: '#fff',
 			fontSize: 28,
+			width: W - 75,
 			fontFamily: 'AvenirNext-DemiBold',
-			width: w - 40
+			...ifIphoneX({
+				 paddingTop: 75
+			}, {
+				 paddingTop: 40
+			})
 	 },
-	 leftButtonStyle: {
-			fontSize: 40,
-			paddingRight: 10
+	 iconLeftStyle: {
+			...ifIphoneX({
+				 paddingTop: 75
+			}, {
+				 paddingTop: 40
+			}),
+			fontSize: 35
 	 },
+	 iconRightStyle: {
+			...ifIphoneX({
+				 paddingTop: 75
+			}, {
+				 paddingTop: 44
+			}),
+			fontSize: 30,
+			marginRight: 3
+	 }
 });
 
 export {Header}
